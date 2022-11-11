@@ -146,7 +146,7 @@ const Hotel = () => {
           <Footer />
         </div>
       )}
-      {openModal && <Reserve setOpen={setOpenModal} hotelId={id}/>}
+      {openModal && <Reserve setOpen={setOpenModal} hotelId={id}  paisa={days * data.cheapestPrice * options.room}/>}
     </div>
   );
 };

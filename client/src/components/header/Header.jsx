@@ -63,7 +63,7 @@ const Header = ({ type }) => {
       >
         <div className="headerList">
           <div className="headerListItem active">
-            <FontAwesomeIcon icon={faBed} />
+            <FontAwesomeIcon icon={faBed} label="Filled" />
             <span>Stays</span>
           </div>
           <div className="headerListItem">

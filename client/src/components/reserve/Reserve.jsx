@@ -8,10 +8,21 @@ import { SearchContext } from "../../context/SearchContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Reserve = ({ setOpen, hotelId }) => {
+const Reserve = ({ setOpen, hotelId , paisa}) => {
+
+
   const [selectedRooms, setSelectedRooms] = useState([]);
   const { data, loading, error } = useFetch(`/hotels/room/${hotelId}`);
+
   const { dates } = useContext(SearchContext);
+
+  const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
+  function dayDifference(date1, date2) {
+    const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY);
+    return diffDays;
+  }
+  const days = dayDifference(dates[0].endDate, dates[0].startDate);
 
   const getDatesInRange = (startDate, endDate) => {
     const start = new Date(startDate);
@@ -61,8 +72,22 @@ const Reserve = ({ setOpen, hotelId }) => {
           return res.data;
         })
       );
-      setOpen(false);
-      navigate("/");
+      setOpen(true);
+      
+        // console.log("Hotel is booked for You :" + hotelId);
+        // // console.log("Room is booked for You :" + selectedRooms);
+        // console.log("Dates for start :" + dates[0].startDate);
+        // console.log("End Date :" +dates[0].endDate);
+        // // console.log("Total payment :"+ (days * d.cheapestPrice));
+        // console.log("Total days :"+ days);
+        // console.log("Total payment :"+ paisa);
+          const arr = { hotelId, selectedRooms, dates, days, paisa };
+          console.log(arr);
+        navigate("/success", {
+          state: arr,});
+  
+        
+        
     } catch (err) {}
   };
   return (
@@ -71,7 +96,7 @@ const Reserve = ({ setOpen, hotelId }) => {
         <FontAwesomeIcon
           icon={faCircleXmark}
           className="rClose"
-          onClick={() => setOpen(false)}
+          onClick={() => setOpen(true)}
         />
         <span>Select your rooms:</span>
         {data.map((item) => (

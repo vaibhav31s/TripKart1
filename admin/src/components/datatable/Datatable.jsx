@@ -9,15 +9,19 @@ import axios from "axios";
 const Datatable = ({columns}) => {
   const location = useLocation();
   const path = location.pathname.split("/")[1];
-  const [list, setList] = useState();
-  const d = `http://localhost:8800/api/${path}`;
+  console.log(path);
+  const d = "http://localhost:8800/api/"+path;
+
   console.log(d);
+
   const { data, loading, error } = useFetch(d);
 
+  const [list, setList] = useState(data);
+
   useEffect(() => {
-    setList(data);
+    setList(data);console.log(data);
   }, [data]);
-  console.log(list);
+  
 
   const handleDelete = async (id) => {
     try {
