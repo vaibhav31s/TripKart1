@@ -32,7 +32,16 @@ const Login = () => {
 
 
   return (
+    <>
+    <h1 style={{
+      height: '10vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      }}>User Login</h1>
     <div className="login">
+
       <div className="lContainer">
         <input
           type="text"
@@ -54,6 +63,7 @@ const Login = () => {
         {error && <span>{error.message}</span>}
       </div>
     </div>
+    </>
   );
 };
 
