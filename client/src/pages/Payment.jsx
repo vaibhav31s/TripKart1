@@ -48,7 +48,7 @@ today = mm + '/' + dd + '/' + yyyy;
 <img class ='img' src="https://i.pinimg.com/originals/70/a5/52/70a552e8e955049c8587b2d7606cd6a6.gif" alt="logo" width="100" height="100" />
  </div>
 
-
+ <button  class ='btn' onClick={printReceipt}>Print</button>
  <footer> Lorem ipsum dolor sit amet consectetur adipisicing. </footer>
 
 </div>
@@ -70,7 +70,7 @@ export default Payment;
 //           <h1>Check Out Date : {data.dates[0].endDate.toString()}</h1>
 //           <h1>Payment Successful</h1>
 //           <h1>Thank You</h1>
-//       <button onClick={printReceipt}>Print</button>
+//     
 // </div>
 
 // )
