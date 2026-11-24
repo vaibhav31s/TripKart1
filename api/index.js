@@ -11,6 +11,10 @@ import cors from "cors";
 const app = express();
 dotenv.config();
 
+// Mongoose 7+ defaults strictQuery to false; keep the Mongoose 6 behaviour of
+// dropping unknown filter fields (e.g. ?limit=4 passed through req.query)
+mongoose.set("strictQuery", true);
+
 const connect = async () => {
   try {
     await mongoose.connect(process.env.MONGO);
