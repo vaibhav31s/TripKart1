@@ -1,6 +1,5 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../datatablesource";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch";
@@ -64,8 +63,8 @@ const Datatable = ({columns}) => {
         className="datagrid"
         rows={list}
         columns={columns.concat(actionColumn)}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
+        initialState={{ pagination: { paginationModel: { pageSize: 9 } } }}
+        pageSizeOptions={[9]}
         checkboxSelection
         getRowId={(row) => row._id}
       />
