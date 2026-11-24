@@ -8,8 +8,10 @@ export const register = async (req, res, next) => {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);
 
+    // Never let clients grant themselves admin rights at signup.
+    const { isAdmin, ...fields } = req.body;
     const newUser = new User({
-      ...req.body,
+      ...fields,
       password: hash,
     });
 

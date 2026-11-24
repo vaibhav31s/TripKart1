@@ -4,8 +4,9 @@ export const updateUser = async (req,res,next)=>{
   try {
     const updatedUser = await User.findByIdAndUpdate(
       req.params.id,
-      { $set: req.body },
-      { new: true }
+      // Clients may not change their own admin flag or set an unhashed password.
+      { $set: (({ isAdmin, password, ...rest }) => rest)(req.body) },
+      { returnDocument: "after" }
     );
     res.status(200).json(updatedUser);
   } catch (err) {

@@ -26,7 +26,7 @@ export const updateRoom = async (req, res, next) => {
     const updatedRoom = await Room.findByIdAndUpdate(
       req.params.id,
       { $set: req.body },
-      { new: true }
+      { returnDocument: "after" }
     );
     res.status(200).json(updatedRoom);
   } catch (err) {
